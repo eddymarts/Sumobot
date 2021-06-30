@@ -1,4 +1,4 @@
-## Sumobot 2nd Place winner!
+# Sumobot 2nd Place winner!
 Sumobot
 Hands On Competition
 
@@ -11,6 +11,6 @@ Functioning:
     - 3 ultrasonic sensors.
     - 3 infrared sensors.
 
-# Hands On Sumobot Competition:
+## Hands On Sumobot Competition:
 Two robots inside a circle have to tackle each other out of the circle.
 The robot that is tackled out (or gets out by accident) loses.
