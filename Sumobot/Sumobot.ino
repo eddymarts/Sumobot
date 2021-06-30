@@ -1,3 +1,8 @@
+/* Sumobot code.
+Made for Hands On Robot Competition.
+By Eddy Martínez. 1053420
+Instituto Tecnológico de Santo Domingo. */
+
 #define MOTOR1_A 2
 #define MOTOR1_B 4
 #define MOTOR1_EN 3
@@ -21,11 +26,11 @@
 float a, b, c;
 int d, e, f;
 
-class Motor {
+class Motor { // DC Motor
   private:
-    byte a;
-    byte b;
-    byte en;
+    byte a; // Pin 1
+    byte b; // Pin 2
+    byte en; // Analog output for Pulse Width Modulation.
 
   public:
     Motor(byte pinA, byte pinB, byte pinEn) {
@@ -50,6 +55,8 @@ class Motor {
       analogWrite(en, 0);
     }
     
+    // v is analog value for Pulse Width Modulation
+    // with a range from 0 to 255.
     void A(int v) {
       digitalWrite(a, HIGH);
       digitalWrite(b, LOW);
@@ -65,7 +72,7 @@ class Motor {
 
 class Sensor {
   private:
-    byte pin;
+    byte pin; // Pin
     int conv;
     float threshold;
 
@@ -82,10 +89,13 @@ class Sensor {
     }
 
     float sense(){
+      // analogRead has a range from 0 to 1023.
+      // Use conv to convert it to a different range when needed.
       return conv*analogRead(pin);
     }
 
     bool detect(){
+      // If sense() outputs above the threshold, it has detected something.
       return sense() >= threshold;
     }
 };
@@ -115,37 +125,37 @@ class Sumobot {
       motor3.off();
     }
 
-    void x_forward(int v, int b) { //xWay
+    void x_forward(int v, int b) {
       motor1.off();
       motor2.B(v);
       motor3.B(b);
     }
 
-    void x_backwards(int v, int b) { //wayX
+    void x_backwards(int v, int b) {
       motor1.off();
       motor2.A(v);
       motor3.A(b);
     }
 
-    void y_forward(int v, int b) { //yWay
+    void y_forward(int v, int b) {
       motor1.A(v);
       motor2.A(b);
       motor3.off();
     }
 
-    void y_backwards(int v, int b) { //wayY
+    void y_backwards(int v, int b) {
       motor1.B(v);
       motor2.B(b);
       motor3.off();
     }
 
-    void z_forward(int v, int b) { //zWay
+    void z_forward(int v, int b) {
       motor1.B(v);
       motor2.off();
       motor3.A(b);
     }
 
-    void z_backwards(int v, int b) { //wayZ
+    void z_backwards(int v, int b) {
       motor1.A(v);
       motor2.off();
       motor3.B(b);
